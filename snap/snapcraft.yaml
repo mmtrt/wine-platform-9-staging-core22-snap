@@ -11,6 +11,14 @@ architectures:
 base: core22
 compression: lzo
 
+lint:
+  # Snapcraft's `ldd` lint can't handle WINE PE format files,
+  # So just make it quiet and also make builds a surprising amount faster
+  ignore:
+    - library:
+        - opt/wine-staging/lib/wine/i386-unix/**
+        - opt/wine-staging/lib64/wine/x86_64-unix/**
+
 slots:
   wine-9-staging:
     interface: content
