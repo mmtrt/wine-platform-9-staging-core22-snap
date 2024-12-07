@@ -37,14 +37,8 @@ parts:
 
       ARCH="$(dpkg --print-architecture)"
 
-      if [ $(wget -qO- https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/main/binary-amd64/ | grep wine-staging | tail -n1 | grep -c ~rc) -gt 0 ]; then
-       WINE_VER="$(wget -qO- https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/main/binary-amd64/ | grep wine-staging | sed 's|_| |g;s|~| |2' | awk '{print $5}' | tail -n1)"
-      else
-       WINE_VER="$(wget -qO- https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/main/binary-amd64/ | grep wine-staging | sed 's|_| |g;s|~| |g' | awk '{print $5}' | tail -n1)"
-      fi
-
       # set snap version
-      craftctl set version="$WINE_VER"
+      craftctl set version="9.22"
 
       # wget and dpkg extract the wine debs
       ## supporting binaries which are arch-specific but the same filenames in both architectures so we only install the native architecture
